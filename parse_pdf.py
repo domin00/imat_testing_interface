@@ -8,7 +8,7 @@ def parse_questions_answers(pdf_path):
     questions_dict = {}
     
     # Define regex patterns for questions and answers
-    question_pattern = re.compile(r'\d+\.\s*(.*?)\n(?:[A-E]\.\s*.*\n)+', re.DOTALL)
+    question_pattern = re.compile(r'^\d+\s+(.*?)(?=(?:\n[A-E]\s|\n\d+\s))', re.DOTALL | re.MULTILINE)
     answer_pattern = re.compile(r'([A-E])\.\s*(.*?)\n')
     
     with pdfplumber.open(pdf_path) as pdf:
